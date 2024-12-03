@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+.main{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 40px;
+    justify-content: center;
+    display: flex;
+}
+
+.card{
+    width: 195px;
+    height: 175px;
+    background-color: #DCDCDC;
+    /* background-color: #565656; */
+    margin: 10px;
+    border-radius: 6px;
+}
+
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.image{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.name{
+    text-align: center;
+}
+
+.more{
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1.6rem;  
+}
+
+.add-pokemons{
+    width: 120px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+
+    color: black;
+}
+
+.input-search{
+    width: 16%;
+    border: 1px #000 solid;
+    border-radius: 4px;
+    padding: 2px;
+    background-color: #fff;
+}
+
+
+.navbar{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 0 40px;
+    height: 80px;
+}
+
+.logo{
+    width: 150px;
+    align-items: center;
+    display: flex;
+}
+
+@media (max-width: 930px) {
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+    }
+
+    
+.logo{
+    width: 180px;
+    align-items: center;
+    display: flex;
+}
+
+
+   .input-search{
+    width: 180px;
+    margin: 8px;
+    
+   } 
+ 
+}
+
+@media (max-width: 293px){
+    .logo{
+        width: 140px;
+    }
+    .navbar{
+        width: 100%;
+    }
+    .title{
+        font-size: 3px;
+    }
+   
+}
+
+
