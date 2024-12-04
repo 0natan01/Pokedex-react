@@ -4,14 +4,13 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { FilterPokes } from "../../FilterPokemons/filter";;
+import { FilterPokes } from "../../FilterPokemons/filter";
 import { ThemeTogglerButton } from "../../theme-tloggler-button/theme-tloggler-button";
 
 import { ThemeContext } from "../../../context/theme-context";
 
 const LogoPokemon =
   "https://i.ebayimg.com/images/g/7GoAAOSwuWpdmJCJ/s-l400.png";
-
 
 async function getPokemonsData(offset) {
   const response = await fetch(
@@ -34,7 +33,7 @@ const PokemonsList = () => {
   const [search, setSearch] = useState("");
   const [selectType, setSelectType] = useState("");
 
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,10 +69,12 @@ const PokemonsList = () => {
 
   return (
     <>
-      <div className="main" style={{color: theme.color , backgroundColor: theme.background}}>
-        <Header>
-          <div className="navbar">
-           
+        <div
+          className="main"
+          style={{ color: theme.color, backgroundColor: theme.background }}
+        >
+          <Header>
+            <div className="navbar">
               <img className="logo" src={LogoPokemon} alt="logo pokemon" />
               <FilterPokes
                 selectType={selectType}
@@ -87,45 +88,52 @@ const PokemonsList = () => {
                 placeholder="find your pokemon"
                 className="input-search"
               ></input>
-              
-               <ThemeTogglerButton/>
-          </div>
-        </Header>
-        <h1 className="title">Pokedex</h1>
-        <div className="container">
-          {filterPokemons(getpokemons)
-            .filter((pokemon) => {
-              const pokemonsFiltereds = pokemon.name.toLowerCase();
-              const searchValue = search.toLowerCase();
-              return pokemonsFiltereds.includes(searchValue);
-            })
-            .map((pokemon, index) => {
-              return (
-                <div key={index} className="card" style={{color: theme.color , backgroundColor: theme.cardBackground }}>
-                  <div className="image">
-                    <img
-                      src={pokemon.sprites?.front_default}
-                      alt={pokemon.name}
-                    />
-                  </div>
-                  <div className="name">
-                    <H4 className="name">{pokemon.name}</H4>
-                  </div>
 
-                  <P>
-                    {" "}
-                    <Link to={`/pokemon/${pokemon.id}`}>Details</Link>
-                  </P>
-                </div>
-              );
-            })}
+              <ThemeTogglerButton />
+            </div>
+          </Header>
+          <h1 className="title">Pokedex</h1>
+          <div className="container">
+            {filterPokemons(getpokemons)
+              .filter((pokemon) => {
+                const pokemonsFiltereds = pokemon.name.toLowerCase();
+                const searchValue = search.toLowerCase();
+                return pokemonsFiltereds.includes(searchValue);
+              })
+              .map((pokemon, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="card"
+                    style={{
+                      color: theme.color,
+                      backgroundColor: theme.cardBackground,
+                    }}
+                  >
+                    <div className="image">
+                      <img
+                        src={pokemon.sprites?.front_default}
+                        alt={pokemon.name}
+                      />
+                    </div>
+                    <div className="name">
+                      <H4 className="name">{pokemon.name}</H4>
+                    </div>
+
+                    <P>
+                      {" "}
+                      <Link to={`/pokemon/${pokemon.id}`}>Details</Link>
+                    </P>
+                  </div>
+                );
+              })}
+          </div>
+          <div className="more">
+            <button onClick={() => morePokes()} className="add-pokemons">
+              More Pokemons
+            </button>
+          </div>
         </div>
-        <div className="more">
-          <button onClick={() => morePokes()} className="add-pokemons">
-            More Pokemons
-          </button>
-        </div>
-      </div>
     </>
   );
 };
@@ -144,10 +152,10 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
   @media (max-width: 280px) {
-    width:100%;
+    width: 100%;
   }
 `;
-
 
 export default PokemonsList;

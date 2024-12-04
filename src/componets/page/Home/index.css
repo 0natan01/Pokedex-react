@@ -2,12 +2,14 @@
 
 
 .main{
-    background-color: #fff;
-    display: flex;
+    display: flex; 
     flex-direction: column;
+    max-width: 1440px;
+    height: 100%;
 }
 
 .title{
+    padding-top: 19.9px;
     font-size: 40px;
     justify-content: center;
     display: flex;
@@ -17,7 +19,6 @@
     width: 195px;
     height: 175px;
     background-color: #DCDCDC;
-    /* background-color: #565656; */
     margin: 10px;
     border-radius: 6px;
 }

@@ -15,12 +15,13 @@ async function getPokemon(id) {
 
 const PokesDetails = () => {
   const [abilities, setAbilities] = useState([]);
+  const [abilitiesName, setAbilitiesNames] = useState([]);
   const [pokemon, setPokemons] = useState([]);
   const [moves, setMoves] = useState([]);
   const [types, setTypes] = useState([]);
   const [stats, setStats] = useState([]);
   const { id } = useParams();
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchDetails = async (abs) => {
@@ -39,33 +40,32 @@ const PokesDetails = () => {
       const abilitiesData = getPokes.abilities.map(
         (abilities) => abilities.ability
       );
-
+      
       const pokeAbilitiesDetails = await abilitiesData.map(async (ability) => {
-        const response = await fetch(ability.url);
-        const res = await response.json();
-        return res;
-      });
-
+         const response = await fetch(ability.url);
+         const res = await response.json();
+         return res;
+       });
+       
       const abilitiesFetched = await Promise.all(pokeAbilitiesDetails);
       console.log(abilitiesFetched);
-      abilitiesFetched.map((abilities) => {
-        const abilitiesDescription = abilities.effect_entries.filter((language) => language.language.name === 'en')
-        //console.log(abilitiesDescription);
-         setAbilities(abilitiesDescription);
-      })
-      //const abilitiesText = abilitiesFetched.effect_entries.filter(language => console.log(language))
-      //console.log(abilitiesText);
-      //const abilitiesTextLanguage= abilitiesFetched.language.map(text => text)
-      //console.log(abilitiesTextLanguage);
+      setAbilitiesNames(abilitiesFetched)
 
-     
+      abilitiesFetched.map((abilities) => {
+        const abilitiesDescription = abilities.effect_entries.filter(
+          (language) => language.language.name === "en"
+        );        
+        setAbilities(abilitiesDescription);
+      });
     };
     fetchDetails();
   }, []);
 
   return (
     <Main>
-      <Container style={{color: theme.color , backgroundColor: theme.background }}>
+      <Container
+        style={{ color: theme.color, backgroundColor: theme.background }}
+      >
         <CardPokemon>
           <div className="card-header">
             <Link to={"/"}>Back</Link>
@@ -76,7 +76,12 @@ const PokesDetails = () => {
             <Image src={pokemon.sprites?.front_default} alt="Pokemon" />
           </div>
           <PokeName>{pokemon.name}</PokeName>
-          <PokeType style={{color: theme.color , backgroundColor: theme.cardBackground }}>
+          <PokeType
+            style={{
+              color: theme.color,
+              backgroundColor: theme.cardBackground,
+            }}
+          >
             {types.map((type, i) => {
               return (
                 <div key={i}>
@@ -85,10 +90,18 @@ const PokesDetails = () => {
               );
             })}
           </PokeType>
-          <PokesStats style={{color: theme.color , backgroundColor: theme.background}}>
+          <PokesStats
+            style={{ color: theme.color, backgroundColor: theme.background }}
+          >
             {stats.map((stats, i) => {
               return (
-                <StatsDetails key={i} style={{color: theme.color , backgroundColor: theme.cardBackground }}>
+                <StatsDetails
+                  key={i}
+                  style={{
+                    color: theme.color,
+                    backgroundColor: theme.cardBackground,
+                  }}
+                >
                   <span>{stats.stat.name}</span>
                   <p>{stats.base_stat}</p>
                 </StatsDetails>
@@ -99,15 +112,20 @@ const PokesDetails = () => {
         <Description>
           <h3 className="ability">Abilities</h3>
 
-          <Abilities >
-            {abilities.map((ability, i) => {
-              //const abilityText = ability.flavor_text_entries.filter((text) => text.language.name === 'en')
-              //console.log(abilityText);
-              console.log(ability);
-              
+          <div>
+            {abilitiesName.map((name, i) => {
               return (
-                <AbilityLi key={i} >
-                  {/* <AbilityName>{ability}</AbilityName> */}
+                <div key={i}>        
+                    <AbilityName>{name.name}</AbilityName>
+                </div>
+              );
+            })}
+          </div>
+          <Abilities>
+            {abilities.map((ability, i) => {
+              return (
+                <AbilityLi key={i}>
+                
                   <span>{ability.effect}</span>
                 </AbilityLi>
               );
@@ -120,7 +138,14 @@ const PokesDetails = () => {
             {moves.slice(0, 20).map((moves, i) => {
               return (
                 <div key={i} className="moves">
-                  <LiMoves style={{color: theme.color , backgroundColor: theme.cardBackground }}>{moves.move.name}</LiMoves>
+                  <LiMoves
+                    style={{
+                      color: theme.color,
+                      backgroundColor: theme.cardBackground,
+                    }}
+                  >
+                    {moves.move.name}
+                  </LiMoves>
                 </div>
               );
             })}
@@ -282,8 +307,8 @@ const Abilities = styled.ul`
   justify-content: center;
   width: 95%;
   max-height: 500px;
-  overflow: hidden;
-  overflow-y: scroll;
+  //overflow: hidden;
+  //overflow-y: scroll;
   @media (max-width: 312px) {
     width: 160px;
     width: 100%;
