@@ -69,9 +69,10 @@ const PokemonsList = () => {
 
   return (
     <>
+      <div className="background"  style={{ color: theme.color, backgroundColor: theme.background }}>
         <div
           className="main"
-          style={{ color: theme.color, backgroundColor: theme.background }}
+         
         >
           <Header>
             <div className="navbar">
@@ -134,6 +135,7 @@ const PokemonsList = () => {
             </button>
           </div>
         </div>
+      </div>
     </>
   );
 };
@@ -152,7 +154,7 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  //padding-top: 20px;
   @media (max-width: 280px) {
     width: 100%;
   }

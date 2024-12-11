@@ -113,13 +113,7 @@ const PokesDetails = () => {
           <h3 className="ability">Abilities</h3>
 
           <div>
-            {abilitiesName.map((name, i) => {
-              return (
-                <div key={i}>        
-                    <AbilityName>{name.name}</AbilityName>
-                </div>
-              );
-            })}
+              <AbilityName>{abilitiesName[0]?.name}</AbilityName>
           </div>
           <Abilities>
             {abilities.map((ability, i) => {
@@ -306,7 +300,7 @@ const Abilities = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   width: 95%;
-  max-height: 500px;
+  height: 100%;
   //overflow: hidden;
   //overflow-y: scroll;
   @media (max-width: 312px) {

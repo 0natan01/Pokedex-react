@@ -13,14 +13,3 @@ export const Button = (props) => {
       />
     )
 }
-
-// export const Button = (props) => {
-
-//     const { theme } = useContext(ThemeContext)
-
-//    return (
-//     <button {...props}
-//     style={{color: theme.color , backgroundColor: theme.background}}
-//     />
-//    )
-// }
